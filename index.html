@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- build:meta -->
+  <title>Portfolio</title>
+  <meta name="description" content="" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Portfolio" />
+  <meta property="og:description" content="" />
+  <!-- /build:meta -->
+  <meta name="theme-color" content="#0b0d12" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <script>
+    // Apply the saved/system theme before first paint (no flash).
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem("pf-theme"); } catch (e) {}
+      if (t !== "light" && t !== "dark") t = matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", t);
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip" href="#work">Skip to projects</a>
+
+  <header class="nav" id="nav">
+    <div class="wrap nav-in">
+      <a class="brand" href="#top" id="brand"></a>
+      <nav class="nav-links" id="navLinks"></nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="langBtn" type="button"></button>
+        <button class="icon-btn" id="themeBtn" type="button"></button>
+        <a class="btn btn-primary btn-sm nav-cv" id="navCv"></a>
+        <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="navLinks"></button>
+      </div>
+    </div>
+  </header>
+  <div class="setup" id="setup" hidden></div>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="wrap hero-in">
+        <div class="hero-text reveal" id="heroText"></div>
+        <div class="hero-visual reveal" id="heroVisual"></div>
+      </div>
+      <div class="wrap">
+        <div class="stats reveal" id="stats"></div>
+      </div>
+    </section>
+
+    <section class="section" id="featured-sec">
+      <div class="wrap" id="featured"></div>
+    </section>
+
+    <section class="section" id="work">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <h2 id="workTitle"></h2>
+          <p id="workSub"></p>
+        </div>
+        <div class="toolbar reveal">
+          <div class="chips" id="catChips" role="toolbar"></div>
+          <label class="search">
+            <span id="searchIcon"></span>
+            <input type="search" id="searchInput" autocomplete="off" />
+          </label>
+        </div>
+        <div class="grid" id="projectGrid"></div>
+        <p class="empty" id="noResults" hidden></p>
+      </div>
+    </section>
+
+    <section class="section" id="gallery">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <h2 id="galleryTitle"></h2>
+          <p id="gallerySub"></p>
+        </div>
+        <div class="chips reveal" id="kindChips" role="toolbar"></div>
+        <div class="masonry" id="masonry"></div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="wrap">
+        <div class="sec-head reveal"><h2 id="skillsTitle"></h2></div>
+        <div class="skills" id="skillsGrid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="journey">
+      <div class="wrap journey-in">
+        <div>
+          <div class="sec-head reveal"><h2 id="journeyTitle"></h2></div>
+          <ol class="timeline" id="timeline"></ol>
+        </div>
+        <aside class="langs reveal" id="langs"></aside>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="wrap">
+        <div class="contact reveal" id="contactCard"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="wrap" id="footer"></div></footer>
+
+  <!-- Project details -->
+  <dialog class="modal" id="projectModal" aria-labelledby="modalTitle">
+    <div class="modal-in" id="modalBody"></div>
+  </dialog>
+
+  <!-- Full-screen media viewer (a dialog too, so it stacks above the project dialog) -->
+  <dialog class="lightbox" id="lightbox" aria-label="Media viewer">
+    <div class="lb-stage" id="lbStage"></div>
+    <div class="lb-bar">
+      <span class="lb-caption" id="lbCaption"></span>
+      <span class="lb-count" id="lbCount"></span>
+    </div>
+    <button class="lb-btn lb-close" id="lbClose" type="button"></button>
+    <button class="lb-btn lb-prev" id="lbPrev" type="button"></button>
+    <button class="lb-btn lb-next" id="lbNext" type="button"></button>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="data/site.js"></script>
+  <script src="assets/common.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>

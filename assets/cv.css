@@ -1,0 +1,121 @@
+/* CV page — always printed light, A4. */
+:root {
+  --ink: #0f1424;
+  --ink-2: #3c4458;
+  --ink-3: #6a7287;
+  --line: #e3e6ee;
+  --accent: #3f57e6;
+  --accent-soft: #eef1ff;
+  --desk: #e9ebf1;
+  --font-en: "Inter", "IBM Plex Sans Arabic", system-ui, "Segoe UI", sans-serif;
+  --font-ar: "IBM Plex Sans Arabic", "Inter", system-ui, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --desk: #1a1d25; }
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--desk); color: var(--ink); font-family: var(--font-en); -webkit-font-smoothing: antialiased; }
+html[lang="ar"] body { font-family: var(--font-ar); }
+a { color: inherit; text-decoration: none; }
+.ic { width: 1em; height: 1em; flex: none; }
+[dir="rtl"] .flip { transform: scaleX(-1); }
+
+/* screen chrome */
+.toolbar {
+  position: sticky; top: 0; z-index: 10; display: flex; align-items: center; gap: 8px;
+  padding: 12px 16px; background: rgba(15, 20, 36, 0.92); backdrop-filter: blur(10px);
+}
+.tb-spacer { flex: 1; }
+.tb-btn {
+  display: inline-flex; align-items: center; gap: 8px; height: 40px; padding-inline: 16px; border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18); background: transparent; color: #fff; font: inherit; font-size: 0.9rem; font-weight: 600; cursor: pointer;
+}
+.tb-btn:hover { border-color: #fff; }
+.tb-btn.primary { background: linear-gradient(120deg, #4a63f0, #0ea5c6); border-color: transparent; }
+.notice { max-width: 210mm; margin: 16px auto 0; padding: 12px 16px; border-radius: 12px; background: #fff7e0; color: #7a5300; border: 1px solid #f1d58a; font-size: 0.9rem; }
+.notice code { background: rgba(0,0,0,.06); padding: 1px 6px; border-radius: 5px; font-family: var(--mono); font-size: 0.85em; }
+.tip { max-width: 210mm; margin: 10px auto 0; padding-inline: 4px; color: var(--ink-3); font-size: 0.82rem; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tip { color: #9aa1b3; } }
+
+/* the sheet */
+.paper {
+  width: 210mm; min-height: 297mm; margin: 14px auto 48px; padding: 15mm 15mm 13mm;
+  background: #fff; box-shadow: 0 20px 60px rgba(10, 14, 30, 0.18); border-radius: 4px;
+  font-size: 9.6pt; line-height: 1.5;
+}
+html[lang="ar"] .paper { line-height: 1.65; }
+
+.cv-head { display: flex; align-items: flex-start; gap: 18px; padding-bottom: 14px; border-bottom: 2px solid var(--ink); }
+.cv-photo { width: 26mm; height: 26mm; border-radius: 50%; object-fit: cover; }
+.cv-id { flex: 1; min-width: 0; }
+.cv-id h1 { margin: 0; font-size: 25pt; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
+html[lang="ar"] .cv-id h1 { letter-spacing: 0; }
+.cv-role { margin: 4px 0 0; font-size: 11.5pt; font-weight: 600; color: var(--accent); }
+.cv-contact { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 16px; color: var(--ink-2); font-size: 8.8pt; }
+.cv-contact li { display: inline-flex; align-items: center; gap: 5px; }
+.cv-contact .ic { color: var(--accent); }
+.cv-qr { display: flex; flex-direction: column; align-items: center; gap: 4px; width: 25mm; text-align: center; }
+.cv-qr .qr { display: block; width: 22mm; height: 22mm; }
+.cv-qr svg { width: 100%; height: 100%; }
+.cv-qr small { font-size: 6.4pt; color: var(--ink-3); line-height: 1.3; }
+
+.cv-profile { margin-top: 12px; }
+.cv-body { display: grid; grid-template-columns: 1fr 58mm; gap: 9mm; margin-top: 2px; }
+.cv-profile h2, .cv-body h2 {
+  margin: 14px 0 8px; font-size: 9pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--accent); display: flex; align-items: center; gap: 8px;
+}
+html[lang="ar"] .cv-profile h2, html[lang="ar"] .cv-body h2 { letter-spacing: 0; font-size: 10.5pt; }
+.cv-profile h2::after, .cv-body h2::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.cv-profile h2 { margin-top: 4px; }
+.cv-summary { margin: 0; color: var(--ink-2); }
+
+.cv-item { padding: 6px 0 8px; break-inside: avoid; }
+.cv-item + .cv-item { border-top: 1px dashed var(--line); }
+.cv-item-head { display: flex; align-items: baseline; gap: 10px; }
+.cv-item h3 { margin: 0; flex: 1; font-size: 10.4pt; font-weight: 700; }
+.cv-date { font-family: var(--mono); font-size: 8pt; color: var(--ink-3); white-space: nowrap; }
+.cv-tech { margin: 2px 0 0; font-family: var(--mono); font-size: 7.6pt; color: var(--accent); }
+[dir="rtl"] .cv-tech { text-align: right; }
+.cv-bullets { margin: 4px 0 0; padding-inline-start: 14px; color: var(--ink-2); }
+.cv-bullets li { margin: 1.5px 0; }
+.cv-bullets li::marker { color: var(--accent); }
+.cv-links { display: inline-flex; gap: 10px; font-size: 7.8pt; white-space: nowrap; }
+.cv-links:empty { display: none; }
+.cv-links a { display: inline-flex; align-items: center; gap: 3px; color: var(--accent); font-weight: 600; }
+.cv-meta { color: var(--ink-3) !important; font-size: 8.4pt; }
+
+.cv-side { border-inline-start: 1px solid var(--line); padding-inline-start: 7mm; }
+.cv-side-item { margin-bottom: 9px; break-inside: avoid; }
+.cv-side-item h3 { margin: 0 0 2px; font-size: 9.2pt; font-weight: 700; }
+.cv-side-item p { margin: 0; color: var(--ink-2); }
+.cv-skill-list { font-size: 8.6pt; }
+[dir="rtl"] .cv-skill-list { text-align: right; }
+.cv-lang { display: flex; justify-content: space-between; gap: 8px; padding: 3px 0; }
+.cv-lang em { font-style: normal; color: var(--ink-3); }
+
+/* off-screen copy used to measure whether the CV fits one page */
+.paper.measure { position: absolute; top: 0; left: -10000px; visibility: hidden; pointer-events: none; min-height: 0; margin: 0; }
+
+/* phone preview: reflow the sheet into one column (printing still uses the A4 layout) */
+@media screen and (max-width: 840px) {
+  .paper:not(.measure) { width: auto; min-height: 0; margin: 12px; padding: 20px 18px; font-size: 10pt; }
+  .paper:not(.measure) .cv-head { flex-wrap: wrap; }
+  .paper:not(.measure) .cv-body { grid-template-columns: 1fr; gap: 0; }
+  .paper:not(.measure) .cv-side { border: 0; padding: 0; }
+  .toolbar .tb-btn span { display: none; }
+  .toolbar .tb-btn.primary span { display: inline; }
+  .notice, .tip { margin-inline: 12px; }
+}
+
+@page { size: A4; margin: 0; }
+@media print {
+  body { background: #fff; }
+  .toolbar, .notice, .tip { display: none !important; }
+  .paper { margin: 0; box-shadow: none; border-radius: 0; width: 210mm; min-height: 0; }
+  a { color: inherit; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
